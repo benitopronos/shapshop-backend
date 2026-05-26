@@ -393,24 +393,10 @@ app.use((err, req, res, next) => {
 });
 
 // ══ START SERVER ══
-app.listen(PORT, () => {
-  console.log(`
-  🚀 SHAP SHOP BENI Backend (PRO) running on port ${PORT}
-  📍 http://localhost:${PORT}
-  
-  ✅ Firebase Connected
-  ✅ Stripe Integrated
-  ✅ JWT Authentication
-  
-  Available endpoints:
-  - POST /api/auth/signup
-  - POST /api/auth/login
-  - GET /api/products
-  - POST /api/cart/add
-  - POST /api/orders/create
-  - POST /api/payment/create-intent
-  - GET /api/admin/stats
-  `);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
 
 module.exports = app;
